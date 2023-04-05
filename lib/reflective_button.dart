@@ -35,6 +35,13 @@ class _ReflectiveButtonState extends State<ReflectiveButton>
   }
 
   @override
+  void dispose() {
+    _animationController.dispose();
+    _cameraController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final borderRadius = BorderRadius.circular(100);
     return AnimatedBuilder(
