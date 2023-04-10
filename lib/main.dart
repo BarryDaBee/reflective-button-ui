@@ -1,6 +1,6 @@
 import 'package:camera/camera.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:reflective_button/reflective_button.dart';
+import 'package:flutter/material.dart';
+import 'package:reflective_button/reflective_neumorphic_button.dart';
 
 late List<CameraDescription> _cameras;
 
@@ -15,8 +15,9 @@ class ReflectiveUIApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CupertinoApp(
-      title: 'Reflective UI Demo',
+    return const MaterialApp(
+      title: 'Reflective Button Demo',
+      debugShowCheckedModeBanner: false,
       home: MyHomePage(),
     );
   }
@@ -32,10 +33,14 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      backgroundColor: CupertinoColors.white.withOpacity(1),
-      child: Center(
-        child: ReflectiveButton(camera: _cameras[1]),
+    return Scaffold(
+      backgroundColor: Colors.white.withOpacity(1),
+      body: Center(
+        /// Psss! Here buddy!
+        /// .asMap()[index] prevents this line from throwing RangeError
+        /// in case there is no value at the index provided
+        ///
+        child: ReflectiveNeumorphicButton(camera: _cameras.asMap()[1]),
       ),
     );
   }
